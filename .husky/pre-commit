@@ -1,0 +1,2 @@
+cd coins_app
+npx eslint . && npx prettier --check "**/*.{ts,tsx,js,jsx,json}" && npm test

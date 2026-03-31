@@ -1,0 +1,79 @@
+appId: com.sam_waldock.coins_app
+---
+- launchApp
+
+# Wait for the coin list to load
+- extendedWaitUntil:
+    visible:
+      text: 'Coins'
+    timeout: 10000
+
+# Wait for list items to appear (first coin should be visible)
+- extendedWaitUntil:
+    visible:
+      text: 'BTC'
+    timeout: 15000
+
+# Scroll down through the list
+- swipe:
+    direction: DOWN
+
+- swipe:
+    direction: DOWN
+
+- swipe:
+    direction: DOWN
+
+# Scroll more to trigger pagination
+- swipe:
+    direction: DOWN
+
+- swipe:
+    direction: DOWN
+
+# Tap on a coin to open detail
+- tapOn:
+    text: 'Bitcoin'
+
+# Verify detail screen appears with coin data
+- extendedWaitUntil:
+    visible:
+      text: 'Bitcoin'
+    timeout: 10000
+
+- assertVisible:
+    text: 'BTC'
+
+# Verify detail data is displayed
+- assertVisible:
+    text: 'Market Cap Rank'
+
+- assertVisible:
+    text: 'Market Cap'
+
+- assertVisible:
+    text: '24h Volume'
+
+# Verify last updated banner
+- extendedWaitUntil:
+    visible:
+      text: '~Last updated at'
+    timeout: 5000
+
+# Pull down to refresh
+- swipe:
+    start: '50%, 20%'
+    end: '50%, 80%'
+
+# Wait for refresh to complete
+- extendedWaitUntil:
+    visible:
+      text: '~Last updated at'
+    timeout: 10000
+
+# Verify data is still available after refresh
+- assertVisible:
+    text: 'Bitcoin'
+
+- assertVisible:
+    text: 'Market Cap'
