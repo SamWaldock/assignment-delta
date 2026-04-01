@@ -18,6 +18,7 @@ export const CoinListItem = ({ coin }: CoinListItemProps) => {
       className="flex-row items-center border-b border-gray-100 bg-white px-4 py-3"
       accessibilityRole="button"
       accessibilityLabel={`${coin.name}, ${formatPrice(coin.priceInUSD)}`}
+      testID="coin-list-item"
     >
       <Image
         source={{ uri: getCoinIconUrl(coin.id) }}

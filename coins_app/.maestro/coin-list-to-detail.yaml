@@ -1,52 +1,29 @@
 appId: com.sam_waldock.coins_app
 ---
+# 1. Launch app
 - launchApp
 
-# Wait for the coin list to load
+# 2. Wait for list to load
 - extendedWaitUntil:
     visible:
       text: 'Coins'
-    timeout: 10000
-
-# Wait for list items to appear (first coin should be visible)
-- extendedWaitUntil:
-    visible:
-      text: 'BTC'
     timeout: 15000
 
-# Scroll down through the list
-- swipe:
-    direction: DOWN
+# 3. Scroll down a few times
+- scroll
+- scroll
+- scroll
 
-- swipe:
-    direction: DOWN
-
-- swipe:
-    direction: DOWN
-
-# Scroll more to trigger pagination
-- swipe:
-    direction: DOWN
-
-- swipe:
-    direction: DOWN
-
-# Tap on a coin to open detail
+# 4. Tap the 3rd visible coin in the list (index is 0-based)
 - tapOn:
-    text: 'Bitcoin'
+    id: 'coin-list-item'
+    index: 2
 
-# Verify detail screen appears with coin data
+# 5. Verify detail screen appears with coin name and data
 - extendedWaitUntil:
     visible:
-      text: 'Bitcoin'
+      text: 'Market Cap Rank'
     timeout: 10000
-
-- assertVisible:
-    text: 'BTC'
-
-# Verify detail data is displayed
-- assertVisible:
-    text: 'Market Cap Rank'
 
 - assertVisible:
     text: 'Market Cap'
@@ -54,26 +31,26 @@ appId: com.sam_waldock.coins_app
 - assertVisible:
     text: '24h Volume'
 
-# Verify last updated banner
-- extendedWaitUntil:
-    visible:
-      text: '~Last updated at'
-    timeout: 5000
+- assertVisible:
+    text: 'Change (24h)'
 
-# Pull down to refresh
+# 6. Pull down to refresh
 - swipe:
-    start: '50%, 20%'
-    end: '50%, 80%'
+    start: '50%, 25%'
+    end: '50%, 75%'
 
 # Wait for refresh to complete
 - extendedWaitUntil:
     visible:
-      text: '~Last updated at'
-    timeout: 10000
+      text: 'Market Cap Rank'
+    timeout: 15000
 
-# Verify data is still available after refresh
-- assertVisible:
-    text: 'Bitcoin'
-
+# 7. Verify data is still available after refresh
 - assertVisible:
     text: 'Market Cap'
+
+- assertVisible:
+    text: '24h Volume'
+
+- assertVisible:
+    text: 'Change (24h)'

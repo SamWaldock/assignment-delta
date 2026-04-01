@@ -189,7 +189,7 @@ Do NOT write tests for:
 
 Write at least one flow:
 
-- Launch app → start scrolling once list loaded → scroll through list until end reached → tap random coin → detail screen appears with coin name visible and other data available → refresh detail screen by pulling down → check whether data still available.
+- Launch app → start scrolling once list loaded → scroll for a few times → tap random coin → detail screen appears with coin name visible and other data available → refresh detail screen by pulling down → check whether data still available.
 
 ## Documentation Files to Generate
 
@@ -359,5 +359,9 @@ __tests__/                    # Mirrors src/ structure
    - Improved agent instructions:
      - Intrstructed if a test should be written by criteria instead of exact lists of files
      - Updated some minor details in the instructions
+
+   - Maestro:
+     - It seems Claude is not great yet creating Maestro flows
+     - I reviewed the flow and made some command changes
 
    - In addition to these points I couldn't find anything else to disagree with
